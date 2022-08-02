@@ -5,9 +5,17 @@ namespace DZ_3m_1l
 {
     internal class Program
     {
+        //Счётчик третьего метода
+        public static int counter3 = 0;
+      
+        //Имена планет. к третьей программе пришёл к переменным. Устал писать каждое название.
+        public static string e = "Земля";
+        public static string v = "Венера";
+        public static string l = "Лимония";
+
+        
         static void Main(string[] args)
         {
-
             AnonPlanet();
             EasyClassPlanet();
             AnotherMethod();
@@ -78,19 +86,29 @@ namespace DZ_3m_1l
         static void EasyClassPlanet()
         {
             var catalogP = new CatalogPlanet();
-            
-            Console.WriteLine(catalogP.GetPlanet("Земля"));
-            Console.WriteLine(catalogP.GetPlanet("Венера"));
-            Console.WriteLine(catalogP.GetPlanet("Лимония"));
+
+            Console.WriteLine(catalogP.GetPlanet(e));
+            Console.WriteLine(catalogP.GetPlanet(v));
+            Console.WriteLine(catalogP.GetPlanet(l));
         }
 
         //Метод вызова третьей программы
         static void AnotherMethod()
         {
-            var Pl = new CatalogPlanetA();
-            Console.WriteLine(Pl.GetPlanet("Венера"));
+            var catalogP = new CatalogPlanetA();
+
+            Console.WriteLine(catalogP.GetPlanet(e, catalogP.Validator));
+            Console.WriteLine(catalogP.GetPlanet(v, catalogP.Validator));
+            Console.WriteLine(catalogP.GetPlanet(l, catalogP.Validator));
+            Console.WriteLine(catalogP.GetPlanet("Другая планета", catalogP.Validator));
+            Console.WriteLine(catalogP.GetPlanet(e, message => counter3 == 3 ? " - Вы спрашиваете слишком часто" : null));
+            Console.WriteLine(catalogP.GetPlanet(e, message => counter3 == 3 ? " - Вы спрашиваете слишком часто" : null));
+            Console.WriteLine(catalogP.GetPlanet(l, message => l == l ? " - Это запретная планета" : null));
+            Console.WriteLine(catalogP.GetPlanet(e, message => e == l ? " - Это запретная планета" : null));
+            Console.WriteLine(catalogP.GetPlanet(v, message => v == l ? " - Это запретная планета" : null));
+
         }
-        //Класс планета и его список
+        //Класс планета и класс список
         class Planet
         {
             public string Name { get; set; }
@@ -162,10 +180,10 @@ namespace DZ_3m_1l
                 return (p.SolarNumber, p.EquatorLen, message);
             }
         }
-        
+
 
         //Список с новым методом
-        
+
         class CatalogPlanetA
         {
             private List<Planet> listPlanet = new List<Planet>();
@@ -194,14 +212,25 @@ namespace DZ_3m_1l
                 listPlanet.Add(mars);
             }
 
-            //Мотод получения номера планеты и длины экватора
+            //Новый метод получения номера планеты и длины экватора
 
-            public delegate string PlanetValidator(string pl);
-            public (int s, int e, string E) GetPlanet(string planetName, PlanetValidator val)
+
+            public string Validator(string namePl)
             {
+                if (counter3 == 3)
+                {
+                    counter3 = 0;
+                    return " - Вы спрашиваете слишком часто";
+                }
+                return null;
+            }
+           
+
+            public (int s, int e, string E) GetPlanet(string planetName, PlanetValidator planetValidator)
+            {
+                counter3++;
                 Planet p = new Planet();
                 string message;
-                val(planetName);
                 switch (planetName)
                 {
                     case "Венера":
@@ -220,9 +249,12 @@ namespace DZ_3m_1l
                         message = "Не удалось найти планету";
                         break;
                 }
-                
+                message += planetValidator(planetName);
+
                 return (p.SolarNumber, p.EquatorLen, message);
             }
+
+            public delegate string PlanetValidator(string a);
         }
     }
 }
