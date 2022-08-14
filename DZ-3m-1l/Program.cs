@@ -6,19 +6,23 @@ namespace DZ_3m_1l
     internal class Program
     {
         //Счётчик третьего метода
+        public static int counterV = 0;
+        public static int counterM = 0;
+        public static int counterE = 0;
         public static int counter3 = 0;
       
         //Имена планет. к третьей программе пришёл к переменным. Устал писать каждое название.
         public static string e = "Земля";
         public static string v = "Венера";
         public static string l = "Лимония";
+        public static string m = "Марс";
 
-        
+
         static void Main(string[] args)
         {
             AnonPlanet();
-            EasyClassPlanet();
-            AnotherMethod();
+            //EasyClassPlanet();
+            //AnotherMethod();
         }
 
         static void AnonPlanet()
@@ -29,7 +33,7 @@ namespace DZ_3m_1l
                 Name = "Венера",
                 SolarNumber = 2,
                 EquatorLen = 12_104,
-                PreviousPlanet = "none"
+                PreviousPlanet = (string)null
             };
 
             var earth = new
@@ -80,6 +84,8 @@ namespace DZ_3m_1l
                 $"\n Длина экватора  {venus2.EquatorLen} " +
                 $"\n Предыдущая планета {venus2.PreviousPlanet.Name}");
             Console.WriteLine("Венера2 = Венера - " + (venus2.Equals(venus)));
+
+            Console.WriteLine(venus2);
         }
 
         //Метод вызова второй программы
@@ -100,6 +106,15 @@ namespace DZ_3m_1l
             Console.WriteLine(catalogP.GetPlanet(e, catalogP.Validator));
             Console.WriteLine(catalogP.GetPlanet(v, catalogP.Validator));
             Console.WriteLine(catalogP.GetPlanet(l, catalogP.Validator));
+            Console.WriteLine(catalogP.GetPlanet(m, catalogP.Validator));
+            Console.WriteLine(catalogP.GetPlanet(e, catalogP.Validator));
+            Console.WriteLine(catalogP.GetPlanet(v, catalogP.Validator));
+            Console.WriteLine(catalogP.GetPlanet(l, catalogP.Validator));
+            Console.WriteLine(catalogP.GetPlanet(m, catalogP.Validator));
+            Console.WriteLine(catalogP.GetPlanet(e, catalogP.Validator));
+            Console.WriteLine(catalogP.GetPlanet(v, catalogP.Validator));
+            Console.WriteLine(catalogP.GetPlanet(l, catalogP.Validator));
+            Console.WriteLine(catalogP.GetPlanet(m, catalogP.Validator));
             Console.WriteLine(catalogP.GetPlanet("Другая планета", catalogP.Validator));
             Console.WriteLine(catalogP.GetPlanet(e, message => counter3 == 3 ? " - Вы спрашиваете слишком часто" : null));
             Console.WriteLine(catalogP.GetPlanet(e, message => counter3 == 3 ? " - Вы спрашиваете слишком часто" : null));
@@ -217,18 +232,36 @@ namespace DZ_3m_1l
 
             public string Validator(string namePl)
             {
+                var r = "";
+                switch (namePl)
+                {
+                    case "Венера":
+                        counterV++;
+                        r = $"  Вы спрашиваете про {namePl} - {counterV} - раз";
+                        break;
+                    case "Земля":
+                        counterE++;
+                        r = $"  Вы спрашиваете про {namePl} - {counterE} - раз";
+                        break;
+                    case "Марс":
+                        counterM++;
+                        r = $"  Вы спрашиваете про {namePl} - {counterM} - раз";
+                        break;
+                }
+                counter3++;
                 if (counter3 == 3)
                 {
                     counter3 = 0;
-                    return " - Вы спрашиваете слишком часто";
+                    r = r + "  Вы спрашиваете слишком часто!  ";
                 }
-                return null;
+                
+                return r;
             }
            
 
             public (int s, int e, string E) GetPlanet(string planetName, PlanetValidator planetValidator)
             {
-                counter3++;
+                
                 Planet p = new Planet();
                 string message;
                 switch (planetName)
