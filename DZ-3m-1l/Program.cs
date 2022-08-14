@@ -85,7 +85,12 @@ namespace DZ_3m_1l
                 $"\n Предыдущая планета {venus2.PreviousPlanet.Name}");
             Console.WriteLine("Венера2 = Венера - " + (venus2.Equals(venus)));
 
+
+
             Console.WriteLine(venus2);
+            
+
+            
         }
 
         //Метод вызова второй программы
