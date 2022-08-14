@@ -10,7 +10,7 @@ namespace DZ_3m_1l
         public static int counterM = 0;
         public static int counterE = 0;
         public static int counter3 = 0;
-      
+
         //Имена планет. к третьей программе пришёл к переменным. Устал писать каждое название.
         public static string e = "Земля";
         public static string v = "Венера";
@@ -21,8 +21,8 @@ namespace DZ_3m_1l
         static void Main(string[] args)
         {
             AnonPlanet();
-            EasyClassPlanet();
-            AnotherMethod();
+            //EasyClassPlanet();
+            //AnotherMethod();
         }
 
         static void AnonPlanet()
@@ -85,12 +85,25 @@ namespace DZ_3m_1l
                 $"\n Предыдущая планета {venus2.PreviousPlanet.Name}");
             Console.WriteLine("Венера2 = Венера - " + (venus2.Equals(venus)));
 
+            var s = venus2;
+            do
+            {
+               
+                Console.WriteLine($"Название {s.Name} " +
+                 $"\n Порядковый номер от Солнца {s.SolarNumber} " +
+                 $"\n Длина экватора  {s.EquatorLen} " +
+                 $"\n Предыдущая планета {s.PreviousPlanet.Name}");
+                Console.WriteLine("Венера2 = Венера - " + (s.Equals(venus)));
+                if (s.PreviousPlanet != null)
+                {
+                    s = ()s.PreviousPlanet;
+                }
+                else
+                {
+                    break;
+                }
 
-
-            Console.WriteLine(venus2);
-            
-
-            
+            } while (true);
         }
 
         //Метод вызова второй программы
@@ -259,14 +272,14 @@ namespace DZ_3m_1l
                     counter3 = 0;
                     r = r + "  Вы спрашиваете слишком часто!  ";
                 }
-                
+
                 return r;
             }
-           
+
 
             public (int s, int e, string E) GetPlanet(string planetName, PlanetValidator planetValidator)
             {
-                
+
                 Planet p = new Planet();
                 string message;
                 switch (planetName)
@@ -293,6 +306,7 @@ namespace DZ_3m_1l
             }
 
             public delegate string PlanetValidator(string a);
+
         }
     }
 }
