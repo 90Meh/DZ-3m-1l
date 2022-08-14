@@ -21,8 +21,8 @@ namespace DZ_3m_1l
         static void Main(string[] args)
         {
             AnonPlanet();
-            //EasyClassPlanet();
-            //AnotherMethod();
+            EasyClassPlanet();
+            AnotherMethod();
         }
 
         static void AnonPlanet()
