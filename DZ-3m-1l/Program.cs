@@ -21,8 +21,8 @@ namespace DZ_3m_1l
         static void Main(string[] args)
         {
             AnonPlanet();
-            //EasyClassPlanet();
-            //AnotherMethod();
+            EasyClassPlanet();
+            AnotherMethod();
         }
 
         static void AnonPlanet()
@@ -61,49 +61,50 @@ namespace DZ_3m_1l
             };
 
             //Вывод на консоль информации
-            Console.WriteLine($"Название {venus.Name} " +
-                $"\n Порядковый номер от Солнца {venus.SolarNumber} " +
-                $"\n Длина экватора  {venus.EquatorLen} " +
-                $"\n Предыдущая планета {venus.PreviousPlanet}");
-            Console.WriteLine("Венера = Венера - " + (venus.Equals(venus)));
+            //Console.WriteLine($"Название {venus.Name} " +
+            //    $"\n Порядковый номер от Солнца {venus.SolarNumber} " +
+            //    $"\n Длина экватора  {venus.EquatorLen} " +
+            //    $"\n Предыдущая планета {venus.PreviousPlanet}");
+            //Console.WriteLine("Венера = Венера - " + (venus.Equals(venus)));
 
-            Console.WriteLine($"Название {earth.Name} " +
-                $"\n Порядковый номер от Солнца {earth.SolarNumber} " +
-                $"\n Длина экватора  {earth.EquatorLen} " +
-                $"\n Предыдущая планета {earth.PreviousPlanet.Name}");
-            Console.WriteLine("Земля = Венера - " + (earth.Equals(venus)));
+            //Console.WriteLine($"Название {earth.Name} " +
+            //    $"\n Порядковый номер от Солнца {earth.SolarNumber} " +
+            //    $"\n Длина экватора  {earth.EquatorLen} " +
+            //    $"\n Предыдущая планета {earth.PreviousPlanet.Name}");
+            //Console.WriteLine("Земля = Венера - " + (earth.Equals(venus)));
 
-            Console.WriteLine($"Название {mars.Name} " +
-                $"\n Порядковый номер от Солнца {mars.SolarNumber} " +
-                $"\n Длина экватора  {mars.EquatorLen} " +
-                $"\n Предыдущая планета {mars.PreviousPlanet.Name}");
-            Console.WriteLine("Марс = Венера - " + (mars.Equals(venus)));
+            //Console.WriteLine($"Название {mars.Name} " +
+            //    $"\n Порядковый номер от Солнца {mars.SolarNumber} " +
+            //    $"\n Длина экватора  {mars.EquatorLen} " +
+            //    $"\n Предыдущая планета {mars.PreviousPlanet.Name}");
+            //Console.WriteLine("Марс = Венера - " + (mars.Equals(venus)));
 
-            Console.WriteLine($"Название {venus2.Name} " +
-                $"\n Порядковый номер от Солнца {venus2.SolarNumber} " +
-                $"\n Длина экватора  {venus2.EquatorLen} " +
-                $"\n Предыдущая планета {venus2.PreviousPlanet.Name}");
-            Console.WriteLine("Венера2 = Венера - " + (venus2.Equals(venus)));
+            //Console.WriteLine($"Название {venus2.Name} " +
+            //    $"\n Порядковый номер от Солнца {venus2.SolarNumber} " +
+            //    $"\n Длина экватора  {venus2.EquatorLen} " +
+            //    $"\n Предыдущая планета {venus2.PreviousPlanet.Name}");
+            //Console.WriteLine("Венера2 = Венера - " + (venus2.Equals(venus)));
 
-            var s = venus2;
+            dynamic s = venus2;
+            var nextStep = true;
             do
             {
-               
+                
                 Console.WriteLine($"Название {s.Name} " +
                  $"\n Порядковый номер от Солнца {s.SolarNumber} " +
                  $"\n Длина экватора  {s.EquatorLen} " +
                  $"\n Предыдущая планета {s.PreviousPlanet.Name}");
-                Console.WriteLine("Венера2 = Венера - " + (s.Equals(venus)));
+                Console.WriteLine($"{s.Name} = Венера - " + (s.Equals(venus)));
                 if (s.PreviousPlanet != null)
                 {
-                    s = ()s.PreviousPlanet;
+                    s = s.PreviousPlanet;
                 }
                 else
                 {
-                    break;
+                    nextStep = false;
                 }
 
-            } while (true);
+            } while (nextStep);
         }
 
         //Метод вызова второй программы
