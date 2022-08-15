@@ -100,11 +100,11 @@ namespace DZ_3m_1l
                 }
                 else
                 {
-                    Console.WriteLine($"Название {venus.Name} " +
-                        $"\n Порядковый номер от Солнца {venus.SolarNumber} " +
-                        $"\n Длина экватора  {venus.EquatorLen} " +
-                        $"\n Предыдущая планета {venus.PreviousPlanet}");
-                    Console.WriteLine("Венера = Венера - " + (venus.Equals(venus)));
+                    Console.WriteLine($"Название {s.Name} " +
+                $"\n Порядковый номер от Солнца {s.SolarNumber} " +
+                $"\n Длина экватора  {s.EquatorLen} " +
+                $"\n Предыдущая планета {s.PreviousPlanet}");
+                    Console.WriteLine($"{s.Name} = Венера - " + (s.Equals(venus)));
                     nextStep = false;
                 }
 
