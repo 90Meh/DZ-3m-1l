@@ -89,15 +89,13 @@ namespace DZ_3m_1l
             var nextStep = true;
             do
             {
-                
-                
-                Console.WriteLine($"Название {s.Name} " +
-                 $"\n Порядковый номер от Солнца {s.SolarNumber} " +
-                 $"\n Длина экватора  {s.EquatorLen} " +
-                 $"\n Предыдущая планета {s.PreviousPlanet.Name}");
-                Console.WriteLine($"{s.Name} = Венера - " + (s.Equals(venus)));
-                if (s.Name != "Земля")
+                if (s.PreviousPlanet != null)
                 {
+                    Console.WriteLine($"Название {s.Name} " +
+                $"\n Порядковый номер от Солнца {s.SolarNumber} " +
+                $"\n Длина экватора  {s.EquatorLen} " +
+                $"\n Предыдущая планета {s.PreviousPlanet.Name}");
+                    Console.WriteLine($"{s.Name} = Венера - " + (s.Equals(venus)));
                     s = s.PreviousPlanet;
                 }
                 else
