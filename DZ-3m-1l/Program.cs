@@ -13,10 +13,10 @@
 
         // Имена планет. к третьей программе пришёл к переменным. Устал писать каждое название.
         public static string E = "Земля";
+
         public static string V = "Венера";
         public static string l = "Лимония";
         public static string m = "Марс";
-
 
         private static void Main(string[] args)
         {
@@ -107,7 +107,6 @@
                     Console.WriteLine($"{s.Name} = Венера - " + s.Equals(venus));
                     nextStep = false;
                 }
-
             } while (nextStep);
         }
 
@@ -201,14 +200,17 @@
                         p = listPlanet[0];
                         message = planetName;
                         break;
+
                     case "Земля":
                         p = listPlanet[1];
                         message = planetName;
                         break;
+
                     case "Марс":
                         p = listPlanet[2];
                         message = planetName;
                         break;
+
                     default:
                         message = "Не удалось найти планету";
                         break;
@@ -222,7 +224,6 @@
                 return (p.SolarNumber, p.EquatorLen, message);
             }
         }
-
 
         // Список с новым методом
 
@@ -256,7 +257,6 @@
 
             // Новый метод получения номера планеты и длины экватора
 
-
             public string Validator(string namePl)
             {
                 var r = "";
@@ -266,10 +266,12 @@
                         counterV++;
                         r = $"  Вы спрашиваете про {namePl} - {counterV} - раз";
                         break;
+
                     case "Земля":
                         counterE++;
                         r = $"  Вы спрашиваете про {namePl} - {counterE} - раз";
                         break;
+
                     case "Марс":
                         counterM++;
                         r = $"  Вы спрашиваете про {namePl} - {counterM} - раз";
@@ -285,10 +287,8 @@
                 return r;
             }
 
-
             public (int s, int e, string E) GetPlanet(string planetName, PlanetValidator planetValidator)
             {
-
                 Planet p = new Planet();
                 string message;
                 switch (planetName)
@@ -297,14 +297,17 @@
                         p = listPlanet[0];
                         message = planetName;
                         break;
+
                     case "Земля":
                         p = listPlanet[1];
                         message = planetName;
                         break;
+
                     case "Марс":
                         p = listPlanet[2];
                         message = planetName;
                         break;
+
                     default:
                         message = "Не удалось найти планету";
                         break;
@@ -315,7 +318,6 @@
             }
 
             public delegate string PlanetValidator(string a);
-
         }
     }
 }
